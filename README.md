@@ -28,6 +28,19 @@ EOF
 
 Reinicie o OpenCode depois disso. Não é necessário mexer no `~/.config/opencode/opencode.json`: o OpenCode carrega automaticamente arquivos `.js` diretos em `~/.config/opencode/plugins`.
 
+## Atualização
+
+Para sincronizar uma instalação global já existente com a versão mais recente do repositório:
+
+```bash
+cd ~/.config/opencode/plugins/opencode-hashline
+git pull --ff-only
+npm ci
+npm run build
+```
+
+Depois reinicie o OpenCode para recarregar o plugin compilado.
+
 ## Configuração
 
 Opcionalmente, crie um arquivo `opencode-hashline.json` no global do OpenCode ou na raiz do projeto:
