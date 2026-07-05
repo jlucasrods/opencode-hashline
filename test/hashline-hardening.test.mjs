@@ -175,6 +175,8 @@ test("system instruction is config-aware and batch-first", () => {
   assert.match(instruction, /Read output stays canonical `#HL`/)
   assert.match(instruction, /batch same-file changes into one edit call with operations\[\]/i)
   assert.match(instruction, /Reread only when you need more context or an edit fails because refs are stale/i)
+  assert.match(instruction, /For existing files, prefer read \+ hashline_edit/i)
+  assert.match(instruction, /Use apply_patch or write for new files/i)
 })
 
 test("system instruction handles prefix disabled", () => {
@@ -209,16 +211,16 @@ test("tool descriptions guide agents toward batched edit workflows", async () =>
   const readOutput = { description: "native read", parameters: {} }
   await definition?.({ toolID: "read" }, readOutput)
   assert.match(readOutput.description, /canonical #HL refs plus a REV token/i)
-  assert.match(readOutput.description, /plan all same-file changes before calling edit/i)
+  assert.match(readOutput.description, /prefer hashline_edit for existing-file changes/i)
 
   const editOutput = { description: "native edit", parameters: {} }
   await definition?.({ toolID: "edit" }, editOutput)
   assert.match(editOutput.description, /Accepts refs copied from read/i)
-  assert.match(editOutput.description, /Prefer one batched call per file/i)
+  assert.match(editOutput.description, /Prefer one batched hashline_edit call per existing file/i)
   assert.match(editOutput.description, /operations:\[\{ op, ref\|startRef\/endRef, content\? \}\]/i)
 
   const writeOutput = { description: "native write", parameters: {} }
   await definition?.({ toolID: "write" }, writeOutput)
   assert.match(writeOutput.description, /Use write for new files or full rewrites/i)
-  assert.match(writeOutput.description, /Prefer edit for targeted existing-file changes/i)
+  assert.match(writeOutput.description, /Prefer hashline_edit for targeted existing-file changes/i)
 })

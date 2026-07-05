@@ -65,7 +65,7 @@ function toHashlineOperations(args: {
 export function createHashlineEditTool(config: HashlineRuntimeConfig, cache?: HashlineAnnotationCache) {
   return tool({
     description:
-      "Edit files using hashline references from read output. Supports replace, delete, insert_before, insert_after, replace_range, and batched operations.",
+      "For existing files, prefer read + hashline_edit using refs from read output. Use apply_patch or write for new files or when hashline refs are not suitable. Supports replace, delete, insert_before, insert_after, replace_range, and batched operations.",
     args: {
       filePath: schema.string().describe("Path to the file, absolute or relative to the current project directory."),
       operation: schema
