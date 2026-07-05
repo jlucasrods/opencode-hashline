@@ -66,7 +66,7 @@ Leia um arquivo normalmente com `read`. A saída vem anotada com refs:
 #HL 6#14C#E2A|Texto atual da linha
 ```
 
-Edite usando `hashline_edit`:
+Edite usando `apply_patch_hashline`:
 
 ```json
 {
@@ -87,4 +87,3 @@ Operações suportadas:
 - `replace_range`
 
 Também é possível enviar `operations` para aplicar várias mudanças no mesmo arquivo em uma chamada.
-

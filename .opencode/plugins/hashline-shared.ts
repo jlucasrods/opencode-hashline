@@ -295,7 +295,7 @@ export function buildHashlineSystemInstruction(config: Pick<HashlineRuntimeConfi
     "- After one read, batch same-file changes into one edit call with operations[] instead of many single edits.",
     "- Send fileRev when the read output includes a REV line.",
     "- Reread only when you need more context or an edit fails because refs are stale.",
-    "- For existing files, prefer read + hashline_edit with refs from read output. Use apply_patch or write for new files or when Hashline refs are not suitable.",
+    "- For existing files, prefer read + apply_patch_hashline with refs from read output. Use apply_patch or write for new files or when Hashline refs are not suitable.",
     HASHLINE_SYSTEM_INSTRUCTION_END_MARKER,
   ].join("\n")
 }

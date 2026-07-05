@@ -67,7 +67,7 @@ export const HashlineRouting: Plugin = async (input) => {
     ...hooks,
     tool: {
       edit: createHashlineEditTool(config, cache),
-      hashline_edit: createHashlineEditTool(config, cache),
+      apply_patch_hashline: createHashlineEditTool(config, cache),
     },
     "tool.execute.before": async (input, output) => {
       const name = normalizeName(input.tool)
